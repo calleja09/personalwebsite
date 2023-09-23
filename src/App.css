@@ -1,38 +1,127 @@
-.App {
+body{
+  font-family: 'Inter', sans-serif;
+  background-color: #050F0E !important;
+    color: #DAF1EE !important;
+}
+nav{
+  background-color: #050f0e00 !important;
+}
+.brand{
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+.profile{
+  z-index: -100;
+}
+.active{
+  transition: 0.1s;
+  font-weight: bold;
+  color: #A5CADF !important;
+}
+.nav-link, .navbar-toggler.icon{
+  color: #DAF1EE !important;
+  filter: drop-shadow(5px 5px 5px #000000);
+}
+.nav-link:hover{
+  color: #A5CADF !important;
+}
+
+.name{
+  font-size: 70px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.lname{
+  background: linear-gradient(to right, #DAF1EE 0%, #5363C1 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.btn-primary{
+  --bs-btn-color: #DAF1EE;
+  --bs-btn-bg: #5363C1;
+  --bs-btn-border-color: none;
+  --bs-btn-hover-color: #b3e1db;
+  --bs-btn-hover-bg: #404c92;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+
+#portfolio{
+  background-color: #131834;
+}
+.project-container{
+  background-color: #253438;
+}
+.clinicam{
+height: 300px;
+width: 150px;
+}
+.title{
+  font-weight: bold;
+  text-transform: uppercase;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.web-dev, .label{
+  text-decoration: none;
+  color: #DAF1EE !important;
+}
+.mob-dev, .soc-med{
+  text-decoration: none;
+  color: #A5CADF !important;
+}
+.grap-des{
+  text-decoration: none;
+  color: #5363C1 !important;
+}
+.link:hover {
+  color: #9ba8f5 !important;
+}
+.about-container{
+  background-color: #131834 !important;
+  width: 90%;
+}
+.id-pic{
+  width: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#contact{
+  background-color: #131834;
+}
+.soc-med:hover{
+  color: #5363C1 !important;
+}
+.form-control{
+  background-color: #daf1ee00;
+  color: #DAF1EE;
+}
+.form-control:focus, .form-label{
+  background-color: #ffef0f00;
+  color: #A5CADF !important;
+}
+textarea{
+  resize: none;
+  height: 150px !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+footer{
+  background-color: #050F0E;
+}
+/* .fa-folder{
+  font-size: rem;
+} */
+/*
+
+.intro{
+  margin-bottom: -20px;
 }
 
-.App-link {
-  color: #61dafb;
+.text{
+  margin-top: -25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+.desc{
+  font-size: 16px;
+  text-align: right;
+} */
