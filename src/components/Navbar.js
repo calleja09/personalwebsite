@@ -12,7 +12,7 @@ const Navbar = () => {
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
-    <div className="collapse navbar-collapse flex-row-reverse" id="navbarNav">
+    <div className="collapse navbar-collapse text-center flex-row-reverse" id="navbarNav">
       <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <Link activeClass="active" smooth={true} spy  duration={1} to="home" className="nav-link p-3 ms-auto">Home</Link>
