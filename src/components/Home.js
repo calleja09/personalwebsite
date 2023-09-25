@@ -14,7 +14,6 @@ import clinicam7 from "../assets/project/clinicam/clinicam7.jpg";
 import clinicam8 from "../assets/project/clinicam/clinicam8.jpg";
 import IdPic from "../assets/idPic.png";
 import TopSvg from "../assets/svgtop";
-import { NavLink } from "react-router-dom";
 import { useRef } from "react";
 import emailjs from '@emailjs/browser';
 
