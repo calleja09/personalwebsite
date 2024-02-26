@@ -1,21 +1,10 @@
-import "../svg.css";
-import resume from "../assets/Calleja Arvin T.pdf";
 import profile from "../assets/profile.png";
-import gabProject1 from "../assets/project/gabProject/gab1.png";
-import gabProject2 from "../assets/project/gabProject/gab2.png";
-import gabProject3 from "../assets/project/gabProject/gab3.png";
-import clinicam1 from "../assets/project/clinicam/clinicam1.jpg";
-import clinicam2 from "../assets/project/clinicam/clinicam2.jpg";
-import clinicam3 from "../assets/project/clinicam/clinicam3.jpg";
-import clinicam4 from "../assets/project/clinicam/clinicam4.jpg";
-import clinicam5 from "../assets/project/clinicam/clinicam5.jpg";
-import clinicam6 from "../assets/project/clinicam/clinicam6.jpg";
-import clinicam7 from "../assets/project/clinicam/clinicam7.jpg";
-import clinicam8 from "../assets/project/clinicam/clinicam8.jpg";
-import IdPic from "../assets/idPic.png";
-import TopSvg from "../assets/svgtop";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import emailjs from '@emailjs/browser';
+
+import WebProjects from "./utils/webProjects";
+import MobileProjects from "./utils/appsProjects";
+import ArtsProjects from "./utils/artsProjects";
 
 function Main(props) {
 
@@ -24,54 +13,56 @@ function Main(props) {
     
     const form = useRef();
 
+    
+    const closeToast = () => {
+        toastDisplay.current.style.display = "none";
+        toastDisplay.current.classList.remove('text-bg-primary');
+        toastDisplay.current.classList.remove('text-bg-danger');
+    }
+
+
     const sendEmail = (e) => {
         e.preventDefault();
-
-
         // TODO setTimeout to close the toast
         emailjs.sendForm('service_elsoc79', 'template_t7m7y36', form.current, '4IVvFjEDxf3F6XgRA')
         .then((result) => {
             console.log(result.text);
             toastDisplay.current.style.display = "block";   
-            toastDisplay.current.className += " text-bg-primary";
+            toastDisplay.current.classList.add("bg-green-500");
             toastText.current.textContent = 'Your message was sent successfully.'
         }, (error) => {
             console.log(error.text);
             toastDisplay.current.style.display = "block";   
-            toastDisplay.current.className += " text-bg-danger";
+            toastDisplay.current.classList.add("bg-red-500");
             toastText.current.textContent = 'Your message was unable to send.'
         });
         e.target.reset();
+
+        setTimeout(() => {
+            closeToast();
+        }, 5000);
     }
 
-    const closeToast = () => {
-        toastDisplay.current.style.display = "none";
-        toastDisplay.current.classList.remove('text-bg-primary');
-        toastDisplay.current.classList.remove('text-bg-danger');
-
-    }
-
+    const [activeProj, setActiveProj] = useState('web');
     return (
         <>
-            <section id="home" className="mt-5">
-                <div className="container-fluid" id="home-page">
-                    <div className="row">
+
+            <section id="home" className="">
+                <div className="" id="home-page">
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
                         {/* Left */}
-                        <div className="col-lg-6 my-auto pe-0 ps-3">
-                            <div className="message">
-                                <p className="text-lg-start lead mb-0">Hello! I’m</p>
-                                <p className="text-lg-start display-1 name mb-0">
-                                    {props.fMName}
-                                </p>
-                                <p className="text-lg-start display-1 name lname mb-0">
-                                    {props.lName}
+                        <div className="ps-4 my-auto">
+                            {/* Message */}
+                            <div>
+                                <p className="font-light text-lg lg:text-3xl">Hello, my name is</p>
+                                <p className="font-extrabold text-4xl lg:text-7xl bg-gradient-to-r from-emerald-100 from-0% to-indigo-900 to-100% bg-clip-text text-transparent pb-2">
+                                    {props.fMName}{props.lName}
                                 </p>
                                 <p className="text-lg-start lead mb-0">
-                                    Let's connect and build something incredible together. I'm
-                                    ready to code, learn, and make the web a better place.
+                                The web is full of possibilities. Are you a visionary thinker and builder too? Let's join forces and turn our ideas into reality.
                                 </p>
                             </div>
-                            <div className="dl-resume mt-3">
+                            {/* <div className="dl-resume mt-3">
                                 <a
                                     href={resume}
                                     className="btn btn-primary align-middle"
@@ -79,114 +70,163 @@ function Main(props) {
                                 >
                                     <i className="fa-solid fa-file-arrow-down"></i>&nbsp;Resume
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                         {/* Right */}
-                        <div className="col-lg-6 profile my-auto">
-                            <img className="img-fluid" alt="profile" src={profile} />
+                        <div className="my-auto">
+                                <img className="h-auto max-w-full drop-shadow-neon" alt="profile" src={profile} />
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="portfolio">
-                <TopSvg />
-                <div className="container min-vh-100">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <h1 className=" display-1 title">portfolio</h1>
-                            <p className="text-center ">
-                                Explore my recent work in Web Development, Mobile App.
-                                This is where you'll discover a display of my enthusiasm,
-                                expertise, and unwavering commitment to shaping digital
-                                experiences and crafting visual narratives.
-                            </p>
+            <section id="portfolio" className="">
+                <div className="p-4">
+                    <h1 className="text-center py-4 font-bold uppercase bg-gradient-to-r from-emerald-100 from-0% to-indigo-900 to-100% bg-clip-text text-transparent text-lg lg:text-3xl">portfolio</h1>
+                    <p className="indent-8 text-wrap">
+                    Explore my recent work in Web Development, Mobile Apps, and Graphic Arts. I'm passionate about crafting digital experiences and visual narratives that leave a lasting impression. Let's shape the future together, one pixel at a time.
+                    </p>
+                </div>
+                {/* tabs button */}
+                <div className="bg-inherit p-4">
+                    <nav className="flex flex-row justify-center">
+                        <button 
+                            onClick={ () => setActiveProj('web')} 
+                            className={`py-2 px-3 block hover:text-blue-500 focus:outline-none border-b-2 
+                            ${activeProj === 'web' ? 'border-blue-500 font-medium text-blue-500' : 'border-transparent text-gray-600'}`}>
+                            <i className= 'bx bx-desktop'></i> <span>Web</span> 
+                        </button>
+
+                        <button 
+                            onClick={ () => setActiveProj('apps')} 
+                            className={` py-2 px-3 block hover:text-blue-500 focus:outline-none border-b-2
+                            ${activeProj === 'apps' ? 'border-blue-500 font-medium text-blue-500' : 'border-transparent text-gray-600'}`}>
+                        <i className='bx bx-mobile-alt'></i> <span>Apps</span> </button>
+
+                        <button 
+                            onClick={ () => setActiveProj('arts')} 
+                            className={`py-4 px-6 block hover:text-blue-500 focus:outline-none border-b-2
+                            ${activeProj === 'arts' ? 'border-blue-500 font-medium text-blue-500' : 'border-transparent text-gray-600'}`}>
+                        <i className='bx bx-pen'></i> <span>Arts</span> 
+                        </button>
+                    </nav>
+                </div>
+                {/* Projects */}
+                <div>
+                    {activeProj === 'web' && (
+                        <div className="items-center" id="web">
+                            <WebProjects />
                         </div>
-                    </div>
-                    <div className="row align-items-center mb-5">
-                        <div className="col-lg-12 rounded project-container">
-                            <div className="row">
-                            <div className="col-lg-6 p-5 portfolio-image">
-                            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-                                <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                    <img src={gabProject1} className="d-block rounded shadow w-100" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={gabProject2} className="d-block rounded shadow w-100" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={gabProject3} className="d-block rounded shadow w-100" alt="..."/>
-                                    </div>
-                                </div>
-                                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span className="visually-hidden">Previous</span>
-                                </button>
-                                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span className="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            </div>
-                            <div className="col-lg-6 p-5 project-description">
-                                <h2 className="fw-bold mb-3 text-uppercase">Games and Amusements Board Accounting System (JULY 2023)</h2>
-                                    <p className="lead"> A web application that enables employees or users to enter petty cash and journal entry vouchers. The website allows you to search for, create, modify, and print petty cash vouchers.</p>
-                            </div>
-                            </div>
+                    )}
+                    {activeProj === 'apps' && (
+                        <div className="container" id="web">
+                            <MobileProjects />
                         </div>
-                    </div>
-                    <div className="row align-items-center">
-                        <div className="col-lg-12 rounded project-container mb-5">
-                            <div className="row">
-                            <div className="col-lg-6 p-5 portfolio-image">
-                            <div id="carousel2" className="carousel slide" data-bs-ride="carousel">
-                                <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                    <img src={clinicam1} className="clinicam d-block mx-auto rounded shadow w-35" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={clinicam2} className="clinicam d-block mx-auto rounded shadow w-35" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={clinicam3} className="clinicam d-block mx-auto rounded shadow w-35" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={clinicam4} className="clinicam d-block mx-auto rounded shadow w-35" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={clinicam5} className="clinicam d-block mx-auto rounded shadow w-35" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={clinicam6} className="clinicam d-block mx-auto rounded shadow w-35" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={clinicam7} className="clinicam d-block mx-auto rounded shadow w-35" alt="..."/>
-                                    </div>
-                                    <div className="carousel-item">
-                                    <img src={clinicam8} className="clinicam d-block mx-auto rounded shadow w-35" alt="..."/>
-                                    </div>
-                                </div>
-                                <button className="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-                                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span className="visually-hidden">Previous</span>
-                                </button>
-                                <button className="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span className="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            </div>
-                            <div className="col-lg-6 p-5 project-description">
-                                <h2 className="fw-bold text-uppercase">Clinicam (DECEMBER 2022)</h2>
-                                    <p className="lead">A mobile application that is designed to help students at Universidad de Manila's College of Health and Science in engaging in a new way of learning clinical instruments using their mobile phones. It is a capstone project that includes image tracking, object tracking, and 3d simulations of all clinical instruments.</p>
-                            </div>
-                            </div>
+                    )}
+                    {activeProj === 'arts' && (
+                        <div className="container" id="web">
+                            <ArtsProjects />
                         </div>
+                    )}
+                </div>
+            </section>
+
+            <section id="about" className="">
+                <div className="p-4">
+                    <h1 className="text-center py-4 font-bold uppercase bg-gradient-to-r from-emerald-100 from-0% to-indigo-900 to-100% bg-clip-text text-transparent text-lg lg:text-3xl">about</h1>
+                    <div className="text-slate-400 mx-auto my-10 flex max-w-xs flex-col md:flex-wrap items-center rounded-xl border p-4 md:max-w-7xl md:flex-row md:items-start text-left">
+                        <p className="leading-2 mb-4">
+                            Hey there! I'm Arvin, a recent graduate delving deep into the realm of full-stack web development. It's a pleasure to connect with you and share my passion for crafting immersive web experiences.
+                        </p>
+                        <p className="leading-2 mb-4">
+                            My journey began at Universidad De Manila, where I earned my Bachelor’s degree in Information Technology. Since then, I've been on a relentless pursuit of knowledge and growth. I'm proud to say that I've successfully completed a comprehensive Full Stack Web Development course on Udemy, where I solidified my skills in HTML, CSS, Python, Django, React, JavaScript, and various libraries and frameworks.
+                        </p>
+                        <p className="leading-2 mb-4">
+                            Currently, I'm immersing myself in the fascinating world of data structures and algorithms through another engaging Udemy course. I firmly believe that understanding these fundamental concepts is crucial for building efficient and scalable software solutions.
+                        </p>
+                        <p className="leading-2 mb-4">
+                            Thank you for taking the time to explore my digital space. Let's join forces, write some code, and unlock endless possibilities together!
+                        </p>
                     </div>
                 </div>
             </section>
-            <section id="about">
+            <section id="contact" className="">
+                <div className="p-4">
+                    <h1 className="text-center py-2 font-bold uppercase bg-gradient-to-r from-emerald-100 from-0% to-indigo-900 to-100% bg-clip-text text-transparent text-lg lg:text-2xl">Have question, project ideas, or just want to say hello?</h1>
+                    <p className="text-wrap text-center">I'd love to hear from you! You can reach out through the contact form  or connect with me on social media.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                    <div className="p-4 md:my-auto md:ml-4">
+                        <p className="font-semibold text-xl">Connect with me on:</p>
+                        <ul className="flex flex-wrap ml-4 mt-4 justify-center md:justify-normal">
+                            <a href="https://discord.com/users/arvin.09">
+                                <li className="mr-8 my-2">
+                                    <div className="flex items-center rounded-full bg-indigo-400/30 px-2 py-1 leading-5 text-4xl text-gray-400 duration-300 hover:bg-indigo-400/80 hover:text-gray-200"><i class='bx bxl-discord-alt' ></i></div>
+                                </li>
+                            </a>
+                            <a href="https://github.com/calleja09" target="_blank" rel="noopener noreferrer">
+                                <li className="mr-8 my-2">
+                                    <div className="flex items-center rounded-full bg-indigo-400/30 px-2 py-1 leading-5 text-4xl text-gray-400 duration-300 hover:bg-indigo-400/80 hover:text-gray-200"><i className='bx bxl-github'></i></div>
+                                </li>
+                            </a>
+                            <a href="https://www.linkedin.com/in/arvin-calleja-578782250/" target="_blank" rel="noopener noreferrer">
+                                <li className="mr-8 my-2">
+                                    <div className="flex items-center rounded-full bg-indigo-400/30 px-2 py-1 leading-5 text-4xl text-gray-400 duration-300 hover:bg-indigo-400/80 hover:text-gray-200"><i className='bx bxl-linkedin-square'></i></div>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div className="p-4">
+                        <form ref={form} onSubmit={sendEmail}>
+                            <div className="lg:col-span-2">
+                                <div className="grid gap-4 gap-y-2 grid-cols-1 md:grid-cols-5">
+                                    <div className="md:col-span-5">
+                                        <label htmlFor="name">Name</label>
+                                        <input type="text" id="name" name="name" className="h-10 border mt-1 rounded px-4 w-full bg-inherit" />
+                                    </div>
+                                    <div className="md:col-span-5">
+                                        <label htmlFor="email">Email Address</label>
+                                        <input type="email" name="user_email" id="email" className="h-10 border mt-1 rounded px-4 w-full bg-inherit" required/>
+                                    </div>
+                                    <div className="md:col-span-5">
+                                        <label htmlFor="subject">Subject</label>
+                                        <input type="text" name="subject" id="subject" className="h-10 border mt-1 rounded px-4 w-full bg-inherit"/>
+                                    </div>
+                                    <div className="md:col-span-5">
+                                        <label htmlFor="Message">Message</label>
+                                        <textarea name="message" id="message" cols="30" rows="5" className="border mt-1 rounded p-4 w-full bg-inherit resize-none"></textarea>
+                                    </div>
+                                    <div className="md:col-span-5 text-left">
+                                        <div className="lg:inline-flex items-start">
+                                        <button type="submit" className="bg-indigo-300/85 py-2 px-4 font-semibold rounded w-full mt-1"><i className="fa-solid fa-paper-plane"></i>  Submit</button>
+                                        </div>
+                                    <div className="md:col-span-5 text-left">
+                                    <p className="font-xs font-thin w-full indent-8 mt-2">I value your privacy. Any information you share will only be used to respond to your inquiry. Your data is respected and never shared without consent.</p>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="hidden fixed text-gray-800 bottom-0 right-0 p-3 border-0 rounded-l-lg shadow-lg " role="alert" aria-live="assertive" aria-atomic="true" ref={toastDisplay}>
+                                <div className="flex">
+                                    <div className="toast-body p-3" ref={toastText}>
+                                        {/* Toast Message */}
+                                    </div>
+                                    <button type="button" className="ml-2 p-2 rounded-full bg-gray-300 text-gray-600 hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-400" data-dismiss="toast" aria-label="Close" onClick={closeToast}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </section>
+{/*
+
+            <section id="about" className="h-dvh">
                 <div className="container-fluid min-vh-100">
                     <div className="row">
                         <div className="col-lg-12 mt-5">
@@ -214,19 +254,11 @@ function Main(props) {
                     </div>
                 </div>
             </section>
+
             <section id="contact">
                 <div className="container-fluid min-vh-100">
                     <div className="row">
-                        <div className="col-lg-12 mt-5">
-                            <h1 className="display-1 title">contact</h1>
-                        </div>
-                    </div>
-                    <div className="row">
                         <div className="col-lg-6 mt-5">
-                            <p className="fs-1 fw-bolder mb-5">Have question, project ideas, or just want to say hello?</p>
-                            <p className="lead mt-5">
-                                I'd love to hear from you! You can reach out through the contact form  or connect with me on social media.
-                            </p>
                             <p className="fs-3 fw-semibold lead">Connect with me on:</p>
                             <div className="col mb-5">
                                 <a href="https://github.com/calleja09" target="_blank" rel="noreferrer" className="soc-med">
@@ -264,6 +296,7 @@ function Main(props) {
                                         <i className="fa-solid fa-paper-plane"></i> 
                                         &nbsp;Send Message
                                     </button>
+
                                     <div className="toast position-fixed bottom-0 end-0 p-3 border-0 " role="alert" aria-live="assertive" aria-atomic="true" ref={toastDisplay}>
                                     <div className="d-flex">
                                         <div className="toast-body" ref={toastText}>
@@ -277,7 +310,7 @@ function Main(props) {
                     </div>
 
                 </div>
-            </section>
+            </section> */}
         </>
     );
 }

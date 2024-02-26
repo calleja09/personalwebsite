@@ -1,6 +1,6 @@
 const information = {
      Info : {
-        fMName : "Arvin T.",
+        fMName : "Arvin ",
         lName : "Calleja"
     }
 }

@@ -3,16 +3,14 @@ import logo from "../assets/logo192.png"
 export default function Footer() {
 return(
     <>
-        <footer>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-lg-12 p-3 text-center">
-                            <img alt="brand" src={logo} className="brand" width="75"/>
-                            <i className="fa-regular fa-copyright"></i> Copyright 2023. All rights reserved.
-                    </div>
+
+        <footer className="footer p-4 bg-base-300 text-base-content">
+            <aside className="flex">
+                <div className="mx-auto inline-flex ">
+                    <p className="mt-2">Copyright © 2024 - All right reserved.</p>
                 </div>
-            </div>
-        </footer>    
+            </aside>
+        </footer>
     </>
 )
 }
