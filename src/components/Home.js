@@ -119,12 +119,12 @@ function Main(props) {
                         </div>
                     )}
                     {activeProj === 'apps' && (
-                        <div className="container" id="web">
+                        <div className="items-center" id="web">
                             <MobileProjects />
                         </div>
                     )}
                     {activeProj === 'arts' && (
-                        <div className="container" id="web">
+                        <div className="items-center" id="web">
                             <ArtsProjects />
                         </div>
                     )}
