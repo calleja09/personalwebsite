@@ -161,7 +161,7 @@ function Main(props) {
                         <ul className="flex flex-wrap ml-4 mt-4 justify-center md:justify-normal">
                             <a href="https://discord.com/users/arvin.09">
                                 <li className="mr-8 my-2">
-                                    <div className="flex items-center rounded-full bg-indigo-400/30 px-2 py-1 leading-5 text-4xl text-gray-400 duration-300 hover:bg-indigo-400/80 hover:text-gray-200"><i class='bx bxl-discord-alt' ></i></div>
+                                    <div className="flex items-center rounded-full bg-indigo-400/30 px-2 py-1 leading-5 text-4xl text-gray-400 duration-300 hover:bg-indigo-400/80 hover:text-gray-200"><i className='bx bxl-discord-alt' ></i></div>
                                 </li>
                             </a>
                             <a href="https://github.com/calleja09" target="_blank" rel="noopener noreferrer">
@@ -224,93 +224,6 @@ function Main(props) {
                     </div>
                 </div>
             </section>
-{/*
-
-            <section id="about" className="h-dvh">
-                <div className="container-fluid min-vh-100">
-                    <div className="row">
-                        <div className="col-lg-12 mt-5">
-                            <h1 className="display-1 title">About me</h1>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="rounded col-lg-12 about-container p-5 my-5 mx-auto">
-                            <p className="lh-base">
-                                Hi! I'm Arvin, a fresh grad and aspiring full-stack web developer with an intermediate level of proficiency in HTML, CSS, and JS libraries and frameworks. I’m excited to share my passion for web development with you.
-                            </p>
-                            <p className="lh-base">
-                                I earned my Bachelor’s degree in Information Technology from Universidad De Manila. I still want to improve my skills that is why I’m taking online courses in Udemy. Currently, I’m taking a course of “Full Stack Web Development” and “Data Structures + Algorithms”.  
-                            </p>
-                            <p className="lh-base">
-                                Thank you for taking time to know me and visiting my page. Let’s create, code, and innovate!
-                            </p>
-                            <div className="row">
-                                <div className="col-lg-12 d-flex">
-                                    <img src={IdPic} alt="ID"  className="rounded-circle id-pic img-fluid"/>
-                                    <p className="h5 mb-0 pt-2 ms-2">{props.fMName} {props.lName}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact">
-                <div className="container-fluid min-vh-100">
-                    <div className="row">
-                        <div className="col-lg-6 mt-5">
-                            <p className="fs-3 fw-semibold lead">Connect with me on:</p>
-                            <div className="col mb-5">
-                                <a href="https://github.com/calleja09" target="_blank" rel="noreferrer" className="soc-med">
-                                    <i className="fa-brands fa-github fs-1 ms-5"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/in/arvin-calleja-578782250/" target="_blank" rel="noreferrer" className="soc-med">
-                                    <i className="fa-brands fa-linkedin-in fs-1 ms-5"></i>
-                                </a>
-                                <a href="https://www.facebook.com/callejaarvin" target="_blank" rel="noreferrer" className="soc-med">
-                                    <i className="fa-brands fa-facebook fs-1 ms-5"></i>
-                                </a>
-                            </div>
-                            <p className="fs-6 fw-lighter">Your privacy is important to me. Any information you provide will be used solely for the purpose of responding to your inquiry or message. I respect your data and will never share it with third parties without your consent.</p>
-                        </div>  
-                        <div className="col-lg-6 my-5">
-                            <form ref={form} onSubmit={sendEmail}>
-                                <div className="form-floating mb-4">
-                                    <input type="text" className="form-control" id="name" name="user_name" placeholder="Full Name"/>
-                                    <label className="form-label" htmlFor="name">Name</label>
-                                </div>
-                                <div className="form-floating mb-4">
-                                    <input type="email" className="form-control" id="email" name="user_email" placeholder="name@example.com" required/>
-                                    <label className="form-label" htmlFor="email">Email Address</label>
-                                </div>
-                                <div className="form-floating mb-4">
-                                    <input type="text" className="form-control" id="subject" name="subject" placeholder="Subject"/>
-                                    <label className="form-label" htmlFor="subject">Subject (Optional)</label>
-                                </div>
-                                <div className="form-floating">
-                                    <textarea className="form-control" id="message" name="message" placeholder="Message"/>
-                                    <label className="form-label" htmlFor="message">Message</label>
-                                </div>
-                                <div className="col btn-toast">
-                                    <button type="submit" className="btn btn-primary btn-lg mt-3">
-                                        <i className="fa-solid fa-paper-plane"></i> 
-                                        &nbsp;Send Message
-                                    </button>
-
-                                    <div className="toast position-fixed bottom-0 end-0 p-3 border-0 " role="alert" aria-live="assertive" aria-atomic="true" ref={toastDisplay}>
-                                    <div className="d-flex">
-                                        <div className="toast-body" ref={toastText}>
-                                        </div>
-                                        <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" onClick={closeToast}></button>
-                                    </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </section> */}
         </>
     );
 }

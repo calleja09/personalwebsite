@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo192.png"
 import React, { useState } from "react";
 
@@ -23,10 +24,10 @@ return (
               {/* :className="!navbarOpen && 'hidden' " */}
               <nav id="navbarCollapse" className={`absolute right-0 top-full w-full rounded-lg bg-slate-900 px-6 py-5 shadow lg:static lg:block lg:w-full max-w-full lg:shadow-none lg:dark:bg-transparent ${!open && "hidden"} `}>
                 <ul className="block lg:flex">
-                  <ListItem NavLink="#home">Home</ListItem>
-                  <ListItem NavLink="#portfolio">Portfolio</ListItem>
-                  <ListItem NavLink="#about">About</ListItem>
-                  <ListItem NavLink="#contact">Contact</ListItem>
+                  <ListItem NavLink="/#home" hash={false}>Home</ListItem>
+                  <ListItem NavLink="/#portfolio" hash={false}>Portfolio</ListItem>
+                  <ListItem NavLink="/#about" hash={false}>About</ListItem>
+                  <ListItem NavLink="/#contact" hash={false}>Contact</ListItem>
                 </ul>
               </nav>
             </div>

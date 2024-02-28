@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import NotFound from './components/NotFound';
 import data from "./assets/data";
+import Preloader from './components/Preloader';
 
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
   return (
     <>
       <div className='main'>
+      <Preloader />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home fMName={fMName} lName={lName}/>} exact/>
